@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly – Kostenlose Websites, Apps &amp; Code</title>
+  <meta name="description" content="Stackly entwickelt Websites, Apps, Bots und Scripts – komplett kostenlos. Stell jetzt deine Anfrage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo"><span class="logo-mark">&lt;/&gt;</span> Stackly</a>
+      <button class="menu-btn" aria-label="Menü öffnen" aria-expanded="false">☰</button>
+      <nav class="nav-links">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#faq">FAQ</a>
+        <a href="#anfrage" class="btn btn-small">Anfrage stellen</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="blob blob-1"></span>
+        <span class="blob blob-2"></span>
+        <span class="grid-lines"></span>
+      </div>
+      <div class="container hero-content">
+        <span class="badge">100 % kostenlos</span>
+        <h1>Dein Code-Projekt.<br><span class="gradient">Kostenlos umgesetzt.</span></h1>
+        <p class="lead">Websites, Apps, Bots, Scripts – beschreib uns deine Idee, wir bauen sie. Keine Kosten, keine versteckten Gebühren.</p>
+        <div class="hero-actions">
+          <a href="#anfrage" class="btn">Jetzt anfragen</a>
+          <a href="#leistungen" class="btn btn-ghost">Was wir machen</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="leistungen" class="section">
+      <div class="container">
+        <h2>Leistungen</h2>
+        <p class="section-sub">Alles, was mit Code zu tun hat.</p>
+        <div class="grid">
+          <article class="card"><div class="icon">🌐</div><h3>Websites</h3><p>Landingpages, Portfolios, Vereins- und Firmenseiten – modern und mobilfreundlich.</p></article>
+          <article class="card"><div class="icon">📱</div><h3>Apps</h3><p>Web-Apps und einfache Mobile-Apps für deine Idee oder dein Projekt.</p></article>
+          <article class="card"><div class="icon">🤖</div><h3>Bots</h3><p>Discord-, Telegram- oder andere Bots mit genau den Funktionen, die du brauchst.</p></article>
+          <article class="card"><div class="icon">⚙️</div><h3>Scripts</h3><p>Automatisierungen, Tools und kleine Programme, die dir Arbeit abnehmen.</p></article>
+          <article class="card"><div class="icon">🎮</div><h3>Games</h3><p>Browser-Spiele und Roblox-Scripts für dein eigenes Game.</p></article>
+          <article class="card"><div class="icon">🛠️</div><h3>Bugfixes</h3><p>Dein Code funktioniert nicht? Wir finden den Fehler und beheben ihn.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ablauf" class="section section-alt">
+      <div class="container">
+        <h2>So funktioniert's</h2>
+        <div class="steps">
+          <div class="step"><span class="step-num">1</span><h3>Anfrage senden</h3><p>Füll das Formular aus und beschreib dein Projekt.</p></div>
+          <div class="step"><span class="step-num">2</span><h3>Absprache</h3><p>Wir melden uns per E-Mail und klären die Details.</p></div>
+          <div class="step"><span class="step-num">3</span><h3>Fertig</h3><p>Du bekommst dein fertiges Projekt – kostenlos.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="anfrage" class="section">
+      <div class="container narrow">
+        <h2>Anfrage stellen</h2>
+        <p class="section-sub">Je genauer du beschreibst, desto besser wird das Ergebnis.</p>
+        <form class="form" action="https://formsubmit.co/el/muxeje" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Neue Stackly-Anfrage">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="">
+          <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off">
+
+          <div class="row">
+            <label>Name<input type="text" name="name" required placeholder="Max Mustermann"></label>
+            <label>E-Mail<input type="email" name="email" required placeholder="du@beispiel.de"></label>
+          </div>
+          <div class="row">
+            <label>Projekttyp
+              <select name="projekttyp" required>
+                <option value="">Bitte wählen…</option>
+                <option>Website</option>
+                <option>App</option>
+                <option>Bot</option>
+                <option>Script / Automatisierung</option>
+                <option>Game</option>
+                <option>Bugfix</option>
+                <option>Sonstiges</option>
+              </select>
+            </label>
+            <label>Wunschtermin (optional)<input type="date" name="deadline"></label>
+          </div>
+          <label>Beschreibung<textarea name="beschreibung" rows="6" required minlength="20" placeholder="Was soll dein Projekt können? Gibt es Beispiele, Farben, Funktionen?"></textarea></label>
+          <p class="form-error" role="alert"></p>
+          <button type="submit" class="btn btn-full">Anfrage absenden</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="faq" class="section section-alt">
+      <div class="container narrow">
+        <h2>FAQ</h2>
+        <details><summary>Ist das wirklich kostenlos?</summary><p>Ja. Es gibt keine Kosten und keine versteckten Gebühren.</p></details>
+        <details><summary>Wie lange dauert ein Projekt?</summary><p>Das hängt vom Umfang ab. Kleine Projekte dauern oft nur ein paar Tage, größere entsprechend länger.</p></details>
+        <details><summary>Gehört mir der Code danach?</summary><p>Ja, du bekommst den kompletten Quellcode und kannst ihn frei verwenden.</p></details>
+        <details><summary>Werden alle Anfragen angenommen?</summary><p>Wir versuchen es, können aber nicht jede Anfrage umsetzen. Du bekommst in jedem Fall eine Antwort.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p><span class="logo-mark">&lt;/&gt;</span> Stackly · © <span id="year"></span></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
