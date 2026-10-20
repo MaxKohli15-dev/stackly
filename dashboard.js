@@ -73,16 +73,22 @@ const logout = async () => { await db.auth.signOut(); location.reload(); };
 $("logout").addEventListener("click", logout);
 $("message-logout").addEventListener("click", logout);
 
-db.auth.onAuthStateChange((_event, session) => start(session));
+// Supabase-Abfragen nicht direkt im Auth-Callback ausführen (sonst blockiert supabase-js)
+db.auth.onAuthStateChange((_event, session) => setTimeout(() => start(session), 0));
 
 let started = false;
 async function start(session) {
   if (!session) return show("login");
   if (started) return;
   started = true;
+  message("Lade Dashboard…", "Einen Moment.");
 
   const { data: members, error } = await db.from("team_members").select("email, name").order("name");
-  if (error || !members?.length) {
+  if (error) {
+    started = false;
+    return message("Fehler beim Laden", `Die Datenbank hat nicht geantwortet (${error.message}). Lade die Seite neu.`, true);
+  }
+  if (!members?.length) {
     started = false;
     return message("Kein Zugriff", `${session.user.email} ist kein Team-Mitglied. Frag einen Admin, dich in team_members einzutragen.`, true);
   }
