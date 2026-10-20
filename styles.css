@@ -331,3 +331,7 @@ details p { opacity: 1; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal, .hero-content > * { opacity: 1; transform: none; }
 }
+
+/* Hinweis im Formular */
+.form-note { font-size: .9rem; color: var(--muted); background: rgba(0, 212, 255, .07); border: 1px solid rgba(0, 212, 255, .25); border-radius: 10px; padding: 12px 14px; }
+.form-note strong { color: var(--text); }

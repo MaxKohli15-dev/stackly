@@ -77,7 +77,7 @@
         <p class="section-sub">Sauberer Code, ehrliche Kommunikation.</p>
         <div class="features">
           <div class="feature"><span class="feature-icon">💸</span><div><h3>Kostenlos</h3><p>Keine Rechnung, kein Abo, keine versteckten Kosten.</p></div></div>
-          <div class="feature"><span class="feature-icon">📦</span><div><h3>Voller Quellcode</h3><p>Du bekommst den kompletten Code und kannst ihn frei nutzen.</p></div></div>
+          <div class="feature"><span class="feature-icon">📦</span><div><h3>Voller Quellcode</h3><p>Du bekommst den kompletten Code und kannst ihn frei nutzen. Das Hosting übernimmst du selbst.</p></div></div>
           <div class="feature"><span class="feature-icon">📱</span><div><h3>Responsiv</h3><p>Websites funktionieren auf Handy, Tablet und Desktop.</p></div></div>
           <div class="feature"><span class="feature-icon">🔒</span><div><h3>Datensparsam</h3><p>Kein Tracking, keine Werbung – nur die Daten, die wir brauchen.</p></div></div>
         </div>
@@ -99,12 +99,8 @@
       <div class="container narrow">
         <h2>Anfrage stellen</h2>
         <p class="section-sub">Je genauer du beschreibst, desto besser wird das Ergebnis. Dein Entwurf wird automatisch in deinem Browser gespeichert.</p>
-        <form class="form" action="https://api.web3forms.com/submit" method="POST" novalidate>
-          <input type="hidden" name="access_key" value="08e92635-184a-4563-9d3d-663e1cff1669">
-          <input type="hidden" name="subject" value="Neue Stackly-Anfrage">
-          <input type="hidden" name="from_name" value="Stackly">
-          <input type="hidden" name="redirect" value="">
-          <input type="checkbox" name="botcheck" class="honey" tabindex="-1" autocomplete="off">
+        <form class="form" novalidate>
+          <input type="text" name="website" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="row">
             <label>Name<input type="text" name="name" required autocomplete="name" placeholder="Max Mustermann"></label>
@@ -130,6 +126,7 @@
             <textarea name="beschreibung" rows="6" required minlength="20" maxlength="3000" placeholder="Was soll dein Projekt können? Gibt es Beispiele, Farben, Funktionen?"></textarea>
             <span class="counter"><span id="count">0</span> / 3000</span>
           </label>
+          <p class="form-note">ℹ️ Wir entwickeln dein Projekt und übergeben den Code. <strong>Hosting, Domains und Server übernehmen wir nicht.</strong></p>
           <label class="check">
             <input type="checkbox" name="datenschutz" value="akzeptiert" required>
             <span>Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.</span>
@@ -146,6 +143,7 @@
         <details><summary>Ist das wirklich kostenlos?</summary><p>Ja. Es gibt keine Kosten und keine versteckten Gebühren.</p></details>
         <details><summary>Wie lange dauert ein Projekt?</summary><p>Das hängt vom Umfang ab. Kleine Projekte dauern oft nur ein paar Tage, größere entsprechend länger.</p></details>
         <details><summary>Gehört mir der Code danach?</summary><p>Ja, du bekommst den kompletten Quellcode und kannst ihn frei verwenden.</p></details>
+        <details><summary>Übernehmt ihr auch das Hosting?</summary><p>Nein. Wir entwickeln dein Projekt und übergeben dir den fertigen Code – Hosting, Domains, Server und laufende Kosten übernehmen wir nicht. Wir geben dir aber gern Tipps für kostenlose Hosting-Möglichkeiten wie GitHub Pages.</p></details>
         <details><summary>Werden alle Anfragen angenommen?</summary><p>Wir versuchen es, können aber nicht jede Anfrage umsetzen. Du bekommst in jedem Fall eine Antwort.</p></details>
         <details><summary>Was passiert mit meinen Daten?</summary><p>Deine Angaben werden nur zur Bearbeitung deiner Anfrage genutzt und nicht weitergegeben. Details findest du in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p></details>
       </div>
@@ -157,7 +155,7 @@
       <p><span class="logo-mark">&lt;/&gt;</span> Stackly · © <span id="year"></span></p>
       <nav class="footer-links">
         <a href="datenschutz.html">Datenschutz</a>
-        <a href="impressum.html">Impressum</a><a href="javascript:Cookiebot.renew()">Cookies</a>
+        <a href="impressum.html">Impressum</a><a href="javascript:Cookiebot.renew()">Cookies</a><a href="dashboard.html">Team</a>
         <a href="https://github.com/MaxKohli15-dev/stackly" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>
@@ -166,6 +164,7 @@
   <button class="to-top" aria-label="Nach oben">↑</button>
   <div class="toast" role="status"></div>
 
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

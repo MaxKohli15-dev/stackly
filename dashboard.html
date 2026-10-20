@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team-Dashboard – Stackly</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>⚡</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dash">
+  <!-- Login -->
+  <main id="login-view" class="login" hidden>
+    <form class="login-card" id="login-form">
+      <a href="index.html" class="logo"><span class="logo-mark">&lt;/&gt;</span> Stackly</a>
+      <h1>Team-Dashboard</h1>
+      <p class="muted">Gib deine Team-E-Mail ein. Du bekommst einen Login-Link.</p>
+      <label>E-Mail<input type="email" name="email" required autocomplete="email" placeholder="du@beispiel.de"></label>
+      <button type="submit" class="btn btn-full">Login-Link senden</button>
+      <p class="login-msg" role="status"></p>
+    </form>
+  </main>
+
+  <!-- Kein Zugriff / nicht eingerichtet -->
+  <main id="message-view" class="login" hidden>
+    <div class="login-card">
+      <a href="index.html" class="logo"><span class="logo-mark">&lt;/&gt;</span> Stackly</a>
+      <h1 id="message-title"></h1>
+      <p class="muted" id="message-text"></p>
+      <button class="btn btn-ghost btn-full" id="message-logout" hidden>Abmelden</button>
+    </div>
+  </main>
+
+  <!-- Dashboard -->
+  <div id="app-view" hidden>
+    <header class="nav">
+      <div class="container wide nav-inner">
+        <a href="index.html" class="logo"><span class="logo-mark">&lt;/&gt;</span> Stackly <span class="tag">Team</span></a>
+        <div class="user">
+          <span class="live" title="Live-Updates aktiv"></span>
+          <span id="user-email" class="muted"></span>
+          <button class="btn btn-small btn-ghost" id="logout">Abmelden</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container wide dash-main">
+      <section class="stats">
+        <button class="stat" data-jump="neu"><span class="stat-label">Neue Anfragen</span><strong id="s-neu">0</strong></button>
+        <button class="stat" data-jump="pruefung"><span class="stat-label">In Prüfung</span><strong id="s-pruefung">0</strong></button>
+        <button class="stat" data-jump="aktiv"><span class="stat-label">Aktive Aufträge</span><strong id="s-aktiv">0</strong></button>
+        <button class="stat" data-jump="fertig"><span class="stat-label">Fertig</span><strong id="s-fertig">0</strong></button>
+      </section>
+
+      <section class="toolbar">
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-tab="anfragen" role="tab">Anfragen</button>
+          <button class="tab" data-tab="auftraege" role="tab">Aufträge</button>
+          <button class="tab" data-tab="alle" role="tab">Alle</button>
+        </div>
+        <div class="filters">
+          <input type="search" id="search" placeholder="Suchen…" aria-label="Suchen">
+          <select id="filter-type" aria-label="Projekttyp">
+            <option value="">Alle Typen</option>
+            <option>Website</option><option>App</option><option>Bot</option>
+            <option>Script / Automatisierung</option><option>Game</option><option>Bugfix</option><option>Sonstiges</option>
+          </select>
+          <select id="filter-status" aria-label="Status"><option value="">Alle Status</option></select>
+          <button class="btn btn-small btn-ghost" id="export">CSV-Export</button>
+        </div>
+      </section>
+
+      <section class="list" id="list" aria-live="polite"></section>
+    </main>
+
+    <!-- Detailansicht -->
+    <div class="drawer-backdrop" id="backdrop"></div>
+    <aside class="drawer" id="drawer" aria-label="Details">
+      <div class="drawer-head">
+        <div>
+          <span class="pill" id="d-status"></span>
+          <h2 id="d-name"></h2>
+          <p class="muted" id="d-meta"></p>
+        </div>
+        <button class="icon-btn" id="d-close" aria-label="Schließen">✕</button>
+      </div>
+      <div class="drawer-body">
+        <dl class="facts">
+          <dt>E-Mail</dt><dd><a id="d-email"></a></dd>
+          <dt>Projekttyp</dt><dd id="d-type"></dd>
+          <dt>Wunschtermin</dt><dd id="d-deadline"></dd>
+          <dt>Beispiel</dt><dd id="d-example"></dd>
+        </dl>
+        <h3>Beschreibung</h3>
+        <p class="desc" id="d-desc"></p>
+
+        <div class="quick">
+          <button class="btn btn-small" data-set="angenommen">✓ Als Auftrag annehmen</button>
+          <button class="btn btn-small btn-ghost" data-set="abgelehnt">Ablehnen</button>
+        </div>
+
+        <form id="d-form" class="form d-form">
+          <div class="row">
+            <label>Status<select name="status" id="d-status-select"></select></label>
+            <label>Zugewiesen an<select name="zugewiesen" id="d-assign"><option value="">– niemand –</option></select></label>
+          </div>
+          <label>Interne Notiz<textarea name="notiz" rows="4" placeholder="Nur für das Team sichtbar"></textarea></label>
+          <button type="submit" class="btn btn-full">Speichern</button>
+        </form>
+
+        <div class="drawer-actions">
+          <a class="btn btn-small btn-ghost" id="d-reply">✉ Antworten</a>
+          <button class="btn btn-small btn-danger" id="d-delete">Löschen</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="toast" role="status"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

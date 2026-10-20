@@ -47,8 +47,6 @@ track.innerHTML += track.innerHTML;
 
 // Formular
 const form = document.querySelector(".form");
-// Nach dem Absenden auf danke.html weiterleiten (funktioniert lokal und auf GitHub Pages)
-form.querySelector('input[name="redirect"]').value = new URL("danke.html", location.href).href;
 
 // Karten füllen den Projekttyp vor
 const typeSelect = form.querySelector('select[name="projekttyp"]');
@@ -85,12 +83,36 @@ try {
 updateCount();
 form.addEventListener("input", saveDraft);
 
+// Anfrage in der Stackly-Datenbank speichern (Supabase REST-API)
+async function sendRequest() {
+  const { supabaseUrl, supabaseAnonKey } = window.STACKLY_CONFIG;
+  const v = (n) => form.elements[n].value.trim();
+  const res = await fetch(`${supabaseUrl}/rest/v1/requests`, {
+    method: "POST",
+    headers: {
+      apikey: supabaseAnonKey,
+      "Content-Type": "application/json",
+      Prefer: "return=minimal",
+    },
+    body: JSON.stringify({
+      name: v("name"),
+      email: v("email"),
+      projekttyp: v("projekttyp"),
+      deadline: v("deadline") || null,
+      beispiel: v("beispiel") || null,
+      beschreibung: v("beschreibung"),
+    }),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+}
+
 // Formular prüfen und absenden
 const errorBox = form.querySelector(".form-error");
-form.addEventListener("submit", (e) => {
+const submitBtn = form.querySelector('button[type="submit"]');
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
   errorBox.textContent = "";
   if (!form.checkValidity()) {
-    e.preventDefault();
     const firstInvalid = form.querySelector(":invalid");
     const messages = {
       beschreibung: "Bitte beschreibe dein Projekt mit mindestens 20 Zeichen.",
@@ -102,11 +124,20 @@ form.addEventListener("submit", (e) => {
     firstInvalid.focus();
     return;
   }
-  try { localStorage.removeItem(DRAFT_KEY); } catch {}
-  // Ladezustand beim Absenden
-  const btn = form.querySelector('button[type="submit"]');
-  btn.classList.add("loading");
-  btn.textContent = "Wird gesendet…";
+  // Spam-Bots füllen das versteckte Feld aus
+  if (form.elements.website.value) return (location.href = "danke.html");
+
+  submitBtn.classList.add("loading");
+  submitBtn.textContent = "Wird gesendet…";
+  try {
+    await sendRequest();
+    try { localStorage.removeItem(DRAFT_KEY); } catch {}
+    location.href = "danke.html";
+  } catch {
+    submitBtn.classList.remove("loading");
+    submitBtn.textContent = "Anfrage absenden";
+    errorBox.textContent = "Senden fehlgeschlagen. Bitte versuche es gleich noch einmal – dein Entwurf ist gespeichert.";
+  }
 });
 
 // Navigation, Fortschrittsbalken und Nach-oben-Button beim Scrollen
