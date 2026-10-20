@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="19ef15a5-230d-4d0e-97ee-1a544976bf2f" data-blockingmode="auto" type="text/javascript"></script>
   <title>Stackly – Kostenlose Websites, Apps &amp; Code</title>
   <meta name="description" content="Stackly entwickelt Websites, Apps, Bots und Scripts – komplett kostenlos. Stell jetzt deine Anfrage.">
   <meta name="theme-color" content="#0b0d17">
@@ -78,7 +79,7 @@
           <div class="feature"><span class="feature-icon">💸</span><div><h3>Kostenlos</h3><p>Keine Rechnung, kein Abo, keine versteckten Kosten.</p></div></div>
           <div class="feature"><span class="feature-icon">📦</span><div><h3>Voller Quellcode</h3><p>Du bekommst den kompletten Code und kannst ihn frei nutzen.</p></div></div>
           <div class="feature"><span class="feature-icon">📱</span><div><h3>Responsiv</h3><p>Websites funktionieren auf Handy, Tablet und Desktop.</p></div></div>
-          <div class="feature"><span class="feature-icon">🔒</span><div><h3>Datensparsam</h3><p>Keine Cookies, kein Tracking – nur die Daten, die wir brauchen.</p></div></div>
+          <div class="feature"><span class="feature-icon">🔒</span><div><h3>Datensparsam</h3><p>Kein Tracking, keine Werbung – nur die Daten, die wir brauchen.</p></div></div>
         </div>
       </div>
     </section>
@@ -98,11 +99,12 @@
       <div class="container narrow">
         <h2>Anfrage stellen</h2>
         <p class="section-sub">Je genauer du beschreibst, desto besser wird das Ergebnis. Dein Entwurf wird automatisch in deinem Browser gespeichert.</p>
-        <form class="form" action="https://formsubmit.co/el/muxeje" method="POST" novalidate>
-          <input type="hidden" name="_subject" value="Neue Stackly-Anfrage">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_next" value="">
-          <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off">
+        <form class="form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="08e92635-184a-4563-9d3d-663e1cff1669">
+          <input type="hidden" name="subject" value="Neue Stackly-Anfrage">
+          <input type="hidden" name="from_name" value="Stackly">
+          <input type="hidden" name="redirect" value="">
+          <input type="checkbox" name="botcheck" class="honey" tabindex="-1" autocomplete="off">
 
           <div class="row">
             <label>Name<input type="text" name="name" required autocomplete="name" placeholder="Max Mustermann"></label>
@@ -155,7 +157,7 @@
       <p><span class="logo-mark">&lt;/&gt;</span> Stackly · © <span id="year"></span></p>
       <nav class="footer-links">
         <a href="datenschutz.html">Datenschutz</a>
-        <a href="impressum.html">Impressum</a>
+        <a href="impressum.html">Impressum</a><a href="javascript:Cookiebot.renew()">Cookies</a>
         <a href="https://github.com/MaxKohli15-dev/stackly" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>

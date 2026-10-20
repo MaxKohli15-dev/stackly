@@ -48,7 +48,7 @@ track.innerHTML += track.innerHTML;
 // Formular
 const form = document.querySelector(".form");
 // Nach dem Absenden auf danke.html weiterleiten (funktioniert lokal und auf GitHub Pages)
-form.querySelector('input[name="_next"]').value = new URL("danke.html", location.href).href;
+form.querySelector('input[name="redirect"]').value = new URL("danke.html", location.href).href;
 
 // Karten füllen den Projekttyp vor
 const typeSelect = form.querySelector('select[name="projekttyp"]');
